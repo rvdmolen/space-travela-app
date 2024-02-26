@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Space Traveller App">
+  <base href="/">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap">
+
+  <title>Space Travel App</title>
+  <style>
+    html,
+    body {
+      /* colors */
+      --clr-dark: hsl(230 35% 7%);
+      --clr-dark-095: hsl(230 35% 7% / 0.95);
+      --clr-light: hsl(231 77% 90%);
+      --clr-light-20: hsl(231 77% 90% / 0.2);
+      --clr-white: hsl(0 0% 100%);
+      --clr-white-0: hsl(0 0% 100% / 0);
+      --clr-white-005: hsl(0 0% 100% / 0.05);
+      --clr-white-5: hsl(0 0% 100% / .5);
+      --clr-white-15: hsl(0 0% 100% / .15);
+      --clr-white-25: hsl(0 0% 100% / 0.25);
+      --clr-white-50: hsl(0 0% 100% / 0.50);
+      --clr-white-100: hsl(0 0% 100% / 1);
+
+      /* font-sizes */
+      --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+      --fs-800: 3.5rem;
+      --fs-700: 1.5rem;
+      --fs-600: 1rem;
+      --fs-500: 1rem;
+      --fs-400: 0.9375rem;
+      --fs-300: 1rem;
+      --fs-200: 0.875rem;
+
+      /* font families */
+      --ff-serif: "Bellefair", serif;
+      --ff-sans-cond: "Barlow Condensed", sans-serif;
+      --ff-sans-normal: "Barlow", sans-serif;
+
+      margin: 0;
+      padding: 0;
+      line-height: 1.5;
+      font-size: var(--fs-400);
+      font-family: var(--ff-sans-normal);
+      background-color: var(--clr-dark);
+      color: var(--clr-white);
+      overflow-x: hidden;
+
+    }
+
+
+    @media (min-width: 35em) {
+      body {
+        --fs-800: 5rem;
+        --fs-700: 2.5rem;
+        --fs-600: 1.5rem;
+        --fs-500: 1.25rem;
+        --fs-400: 1rem;
+      }
+    }
+
+    @media (min-width: 45em) {
+      body {
+        /* font-sizes */
+        --fs-800: 6.25rem;
+        --fs-700: 3.5rem;
+        --fs-600: 2rem;
+        --fs-500: 1.75rem;
+        --fs-400: 1.125rem;
+      }
+    }
+  </style>
+
+  <script type="module">
+    import {URLPattern} from 'urlpattern-polyfill';
+    if (!window.URLPattern) {
+      window.URLPattern = URLPattern;
+    }
+  </script>
+</head>
+
+<body>
+  <app-space-traveller></app-space-traveller>
+  <script type="module" src="./src/app-space-traveller.js"></script>
+</body>
+
+</html>
