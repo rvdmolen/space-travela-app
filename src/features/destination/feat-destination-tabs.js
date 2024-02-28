@@ -7,7 +7,7 @@
 
 
 /**
- * @type {Array.<Tab>} Tabs
+ * @type {Tab[]} Tabs
  */
 const featureDestinationTabs = [
   {

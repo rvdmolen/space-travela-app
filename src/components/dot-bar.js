@@ -1,14 +1,14 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../styles/styles.js';
+import { DotSelectedEvent } from '../events/dot-selected-event.js';
 
 @customElement('dot-bar')
 export class DotBar extends LitElement {
 
   @property({ type: Array }) dots;
 
-  @property({type: Text}) selected = '';
-
+  @property({ type: Text }) selected = '';
 
   static get styles() {
     return [
@@ -23,11 +23,8 @@ export class DotBar extends LitElement {
   }
 
   selectDot(dot) {
-    const myEvent = new CustomEvent('dot-selected', {
-      detail: dot,
-      bubbles: true,
-      composed: true });
-    this.dispatchEvent(myEvent);
+    const dotSelectedEvent = new DotSelectedEvent(dot);
+    this.dispatchEvent(dotSelectedEvent);
   }
 
   render() {

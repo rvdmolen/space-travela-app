@@ -20,39 +20,41 @@ export class FeatDestination extends LitElement {
     if (super.connectedCallback) {
       super.connectedCallback();
     }
-    this.setSelectedTab();
+    this.initializeTabs();
   }
 
-  setSelectedTab() {
-    const selection = featureDestinationTabs.filter(x => x.selected === true);
-    [this.selectedTab] = selection.map(x => x.description);
-    [this.selectedFoto] = selection.map(x => x.image);
+  initializeTabs() {
+    const selectedTab = featureDestinationTabs.filter(x => x.selected === true);
+    [this.selectedTab] = selectedTab.map(x => x.description);
+    [this.selectedFoto] = selectedTab.map(x => x.image);
   }
 
   handleSelectTab(event) {
-    this.selectedTab = event.detail;
-    [this.selectedFoto] = featureDestinationTabs
-      .filter(x => x.description === this.selectedTab)
-      .map(x => x.image);
+    const { detail: tab } = event;
+    this.selectedTab = tab.description;
+    this.selectedFoto = tab.image;
   }
 
   render() {
     return html`
       <div class="grid-container grid-container--destination flow">
         <h1 class="numbered-title"><span aria-hidden="true">01</span> Pick your destination</h1>
-
         <img src="${this.selectedFoto}" alt="the moon">
-
         <tab-bar .tabs="${featureDestinationTabs}" @tab-selected="${this.handleSelectTab}"></tab-bar>
-
-        ${when(this.selectedTab === featureDestinationTabs[0].description, () => html`
-          <feat-moon></feat-moon>`, () => html``)}
-        ${when(this.selectedTab === featureDestinationTabs[1].description, () => html`
-          <feat-mars></feat-mars>`, () => html``)}
-        ${when(this.selectedTab === featureDestinationTabs[2].description, () => html`
-          <feat-europe></feat-europe>`, () => html``)}
-        ${when(this.selectedTab === featureDestinationTabs[3].description, () => html`
-          <feat-titan></feat-titan>`, () => html``)}
+        ${this.renderImage()}
       </div> `;
+  }
+
+  renderImage() {
+    return html`
+      ${when(this.selectedTab === featureDestinationTabs[0].description, () => html`
+        <feat-moon></feat-moon>`, () => html``)}
+      ${when(this.selectedTab === featureDestinationTabs[1].description, () => html`
+        <feat-mars></feat-mars>`, () => html``)}
+      ${when(this.selectedTab === featureDestinationTabs[2].description, () => html`
+        <feat-europe></feat-europe>`, () => html``)}
+      ${when(this.selectedTab === featureDestinationTabs[3].description, () => html`
+        <feat-titan></feat-titan>`, () => html``)}
+    `;
   }
 }

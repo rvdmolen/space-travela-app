@@ -1,24 +1,21 @@
 import { html, LitElement } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../styles/styles.js';
-
-
-/** @type {string} */
-const KEY_DOWN_ENTER = 'KeyDownEnter';
-
-/** @type {string} */
-const KEY_DOWN_LEFT = 'ArrowLeft';
-
-/** @type {string} */
-const KEY_DOWN_RIGHT = 'ArrowRight';
+import { KeyDefinitions } from '../model/key-definitions.js';
+import { TabSelectedEvent } from '../events/tab-selected-event.js';
 
 
 @customElement('tab-bar')
 export class TabBar extends LitElement {
 
+  /** @type {Tab[]} */
   @property({ type: Array }) tabs;
 
-  @property({type: Text}) selected = '';
+  /** @type {string} */
+  @property({ type: Text }) selected = '';
+
+  /** @type {Tab[]} */
+  @state() _tabs;
 
   static get styles() {
     return [
@@ -30,18 +27,23 @@ export class TabBar extends LitElement {
     if (super.connectedCallback) {
       super.connectedCallback();
     }
-    [this.selected] = this.tabs.filter(x => x.selected === true).map(x => x.description);
+    this._tabs = [...this.tabs];
   }
 
-  selectTab(tab) {
-    const myEvent = new CustomEvent('tab-selected', {
-      detail: tab.description,
-      bubbles: true,
-      composed: true });
-
-    this.selected = tab.description;
-    this.dispatchEvent(myEvent);
+  /**
+   * Select tab
+   * @param {Tab} selectedTab
+   */
+  selectTab(selectedTab) {
+    this._tabs = this._tabs.map(tab => ({
+        ...tab,
+        selected: tab.description === selectedTab.description
+      }
+    ));
+    const tabSelectedEvent = new TabSelectedEvent(selectedTab);
+    this.dispatchEvent(tabSelectedEvent);
   }
+
 
   /**
    * @param {KeyboardEvent} ev
@@ -49,30 +51,30 @@ export class TabBar extends LitElement {
   handleKeyDown(ev) {
     const currentTabSelected = this.shadowRoot.querySelector('[aria-selected="true"]');
     const tabs = this.shadowRoot.querySelectorAll('[role="tab"]');
-    const currentIndex = Array.from(tabs).findIndex((item)=> item.innerText === currentTabSelected.innerText);
+    const currentIndex = Array.from(tabs).findIndex((item) => item.innerText === currentTabSelected.innerText);
 
-    if (ev.key === KEY_DOWN_RIGHT) {
+    if (ev.key === KeyDefinitions.KEY_DOWN_RIGHT) {
       this._handleMoveRightTab(currentIndex, tabs);
     }
 
-    if (ev.key === KEY_DOWN_LEFT) {
+    if (ev.key === KeyDefinitions.KEY_DOWN_LEFT) {
       this._handleMoveLeftTab(currentIndex, tabs);
-
     }
   }
 
   /**
    * @param {KeyboardEvent} ev
+   * @param {Tab} tab
    */
   keyPressTab(ev, tab) {
-    if (ev.key === KEY_DOWN_ENTER) {
+    if (ev.key === KeyDefinitions.KEY_DOWN_ENTER) {
       this.selectTab(tab);
     }
   }
 
   _handleMoveRightTab(currentIndex, tabs) {
-    if (currentIndex < tabs.length-1) {
-      this._setTabVisibility(tabs, currentIndex, currentIndex+1);
+    if (currentIndex < tabs.length - 1) {
+      this._setTabVisibility(tabs, currentIndex, currentIndex + 1);
     } else {
       this._setTabVisibility(tabs, currentIndex, 0);
     }
@@ -80,9 +82,9 @@ export class TabBar extends LitElement {
 
   _handleMoveLeftTab(currentIndex, tabs) {
     if (currentIndex > 0) {
-      this._setTabVisibility(tabs, currentIndex, currentIndex-1);
+      this._setTabVisibility(tabs, currentIndex, currentIndex - 1);
     } else {
-      this._setTabVisibility(tabs, currentIndex, tabs.length-1);
+      this._setTabVisibility(tabs, currentIndex, tabs.length - 1);
     }
   }
 
@@ -95,17 +97,17 @@ export class TabBar extends LitElement {
   render() {
     return html`
       <div class="tab-list underline-indicators flex" role="tablist" aria-label="destination list" @keydown="${(e) => this.handleKeyDown(e)}">
-        ${this.tabs.map(
+        ${this._tabs.map(
           (tab =>
-            html`
-              <button role="tab" aria-selected="${this.selected === tab.description}" @click="${() => this.selectTab(tab)}" @keydown="${(e) => this.keyPressTab(e, tab)}" class="uppercase ff-sans-cond text-accent letter-spacing-2">${tab.description}</button>
-            `
-        ))}
+              html`
+                <button role="tab" aria-selected="${tab.selected === true}" @click="${() => this.selectTab(tab)}" @keydown="${(e) => this.keyPressTab(e, tab)}"
+                        class="uppercase ff-sans-cond text-accent letter-spacing-2">${tab.description}
+                </button>
+              `
+          ))}
       </div>
     `;
   }
-
-
 
 
 }
