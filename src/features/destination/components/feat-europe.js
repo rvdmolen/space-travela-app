@@ -2,7 +2,6 @@ import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../../../styles/styles.js';
 
-
 @customElement('feat-europe')
 export class FeatEurope extends LitElement {
   static get styles() {
@@ -33,7 +32,7 @@ export class FeatEurope extends LitElement {
             justify-content: start;
           }
         }
-      `
+      `,
     ];
   }
 
@@ -42,10 +41,10 @@ export class FeatEurope extends LitElement {
       <article class="flow">
         <h2 class="fs-800 uppercase ff-serif">Europe</h2>
 
-        <p>The smallest of the four Galilean moons orbiting Jupiter, Europa is a
-          winter lover’s dream. With an icy surface, it’s perfect for a bit of
-          ice skating, curling, hockey, or simple relaxation in your snug
-          wintery cabin.</p>
+        <p>
+          The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey,
+          or simple relaxation in your snug wintery cabin.
+        </p>
 
         <div class="destination-meta flex">
           <div>

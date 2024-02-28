@@ -2,7 +2,6 @@ import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../../../styles/styles.js';
 
-
 @customElement('feat-titan')
 export class FeatTitan extends LitElement {
   static get styles() {
@@ -33,7 +32,7 @@ export class FeatTitan extends LitElement {
             justify-content: start;
           }
         }
-      `
+      `,
     ];
   }
 
@@ -42,9 +41,9 @@ export class FeatTitan extends LitElement {
       <article class="flow">
         <h2 class="fs-800 uppercase ff-serif">Titan</h2>
 
-        <p>The only moon known to have a dense atmosphere other than Earth, Titan
-          is a home away from home (just a few hundred degrees colder!). As a
-          bonus, you get striking views of the Rings of Saturn.
+        <p>
+          The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views
+          of the Rings of Saturn.
         </p>
 
         <div class="destination-meta flex">

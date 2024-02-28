@@ -2,7 +2,6 @@ import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../../../styles/styles.js';
 
-
 @customElement('feat-mars')
 export class FeatMars extends LitElement {
   static get styles() {
@@ -33,7 +32,7 @@ export class FeatMars extends LitElement {
             justify-content: start;
           }
         }
-      `
+      `,
     ];
   }
 
@@ -42,9 +41,9 @@ export class FeatMars extends LitElement {
       <article class="flow">
         <h2 class="fs-800 uppercase ff-serif">Mars</h2>
 
-        <p>Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons,
-          the tallest planetary mountain in our solar system. It’s two and a half times
-          the size of Everest!
+        <p>
+          Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of
+          Everest!
         </p>
 
         <div class="destination-meta flex">

@@ -9,5 +9,4 @@ const KeyDefinitions = Object.freeze({
   KEY_DOWN_RIGHT: 'ArrowRight'
 });
 
-
 export { KeyDefinitions };

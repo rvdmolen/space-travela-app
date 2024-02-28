@@ -8,5 +8,4 @@ const EventDefinitions = Object.freeze({
   DOT_SELECTED: 'dot-selected'
 });
 
-
 export { EventDefinitions };

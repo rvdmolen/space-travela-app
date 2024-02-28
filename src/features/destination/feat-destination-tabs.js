@@ -5,7 +5,6 @@
  * @property {boolean} selected - The selected
  */
 
-
 /**
  * @type {Tab[]} Tabs
  */
@@ -29,8 +28,7 @@ const featureDestinationTabs = [
     description: 'Titan',
     image: new URL('../../../assets/destination/image-titan.png', import.meta.url).href,
     selected: false
-  }
+  },
 ];
-
 
 export { featureDestinationTabs };

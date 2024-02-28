@@ -1,4 +1,4 @@
-import { html, LitElement, css } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../../styles/styles.js';
 
@@ -38,7 +38,10 @@ export class FeatHome extends LitElement {
             So, you want to travel to
             <span class="d-block  fs-900 ff-serif text-white">Space</span>
           </h1>
-          <p>Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!</p>
+          <p>
+            Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll
+            give you a truly out of this world experience!
+          </p>
         </div>
         <div>
           <a href="#" class="large-button uppercase ff-serif text-dark bg-white">Explore</a>

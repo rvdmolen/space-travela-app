@@ -5,7 +5,6 @@ import { globalSpaceTravelStyles } from '../styles/styles.js';
 
 @customElement('navigation-bar')
 export class NavigationBar extends LitElement {
-
   @property({ type: Object }) router;
 
   @property({ type: String }) selectedRoute;
@@ -13,9 +12,7 @@ export class NavigationBar extends LitElement {
   @state() active = false;
 
   static get styles() {
-    return [
-      globalSpaceTravelStyles
-    ];
+    return [globalSpaceTravelStyles];
   }
 
   getRouteTitle(title) {
@@ -36,17 +33,18 @@ export class NavigationBar extends LitElement {
         <span class="sr-only">Menu</span>
       </button>
       <nav>
-        <ul id="primary-navigation"  class="primary-navigation underline-indicators flex ${classMap({ active: this.active })}">
+        <ul id="primary-navigation" class="primary-navigation underline-indicators flex ${classMap({ active: this.active })}">
           ${this.router.routes.map(
             route =>
               html`
                 <li
                   class="${classMap({
-                    active: this.selectedRoute === route.path
+                active: this.selectedRoute === route.path
                   })}"
                 >
-                  <a class="ff-sans-cond uppercase text-white letter-spacing-2"
-                     href="${route.path}"><span aria-hidden="true">${this.getRouteIndex(route.title)}</span>${this.getRouteTitle(route.title)}</a>
+                  <a class="ff-sans-cond uppercase text-white letter-spacing-2" href="${route.path}"
+                    ><span aria-hidden="true">${this.getRouteIndex(route.title)}</span>${this.getRouteTitle(route.title)}</a
+                  >
                 </li>
               `
           )}

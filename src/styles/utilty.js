@@ -21,7 +21,7 @@ export const utilitySpaceTravelStyles = css`
     z-index: 9999;
     background: var(--clr-white);
     color: var(--clr-dark);
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     margin-inline: auto;
     transform: translateY(-101%);
     transition: transform 250ms ease-in;
@@ -207,12 +207,11 @@ export const utilitySpaceTravelStyles = css`
     .primary-navigation {
       margin-block: 2rem;
     }
-
   }
 
   .underline-indicators > * {
     cursor: pointer;
-    padding: var(--underline-gap, .5rem) 0;
+    padding: var(--underline-gap, 0.5rem) 0;
     border: 0;
     border-bottom: 0.2rem solid var(--clr-white-0);
     background-color: transparent;

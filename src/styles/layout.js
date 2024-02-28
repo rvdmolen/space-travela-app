@@ -28,7 +28,7 @@ export const layoutSpaceTravelStyles = css`
   }
 
   .flow--space-small {
-    --flow-space: .75rem;
+    --flow-space: 0.75rem;
   }
 
   .container {
@@ -45,7 +45,6 @@ export const layoutSpaceTravelStyles = css`
     }
   }
 
-
   .grid-responsive {
     grid-template-columns: 1fr !important;
   }
@@ -56,6 +55,4 @@ export const layoutSpaceTravelStyles = css`
       grid-template-columns: 1fr 1fr 1fr !important;
     }
   }
-
 `;
-

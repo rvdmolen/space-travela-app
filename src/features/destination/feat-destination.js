@@ -7,7 +7,6 @@ import './components/index.js';
 
 @customElement('feat-destination')
 export class FeatDestination extends LitElement {
-
   @state() selectedTab;
 
   @state() selectedFoto;
@@ -39,22 +38,39 @@ export class FeatDestination extends LitElement {
     return html`
       <div class="grid-container grid-container--destination flow">
         <h1 class="numbered-title"><span aria-hidden="true">01</span> Pick your destination</h1>
-        <img src="${this.selectedFoto}" alt="the moon">
+        <img src="${this.selectedFoto}" alt="the moon" />
         <tab-bar .tabs="${featureDestinationTabs}" @tab-selected="${this.handleSelectTab}"></tab-bar>
         ${this.renderImage()}
-      </div> `;
+      </div>
+    `;
   }
 
   renderImage() {
     return html`
-      ${when(this.selectedTab === featureDestinationTabs[0].description, () => html`
-        <feat-moon></feat-moon>`, () => html``)}
-      ${when(this.selectedTab === featureDestinationTabs[1].description, () => html`
-        <feat-mars></feat-mars>`, () => html``)}
-      ${when(this.selectedTab === featureDestinationTabs[2].description, () => html`
-        <feat-europe></feat-europe>`, () => html``)}
-      ${when(this.selectedTab === featureDestinationTabs[3].description, () => html`
-        <feat-titan></feat-titan>`, () => html``)}
+      ${when(
+        this.selectedTab === featureDestinationTabs[0].description,
+        () => html`
+          <feat-moon></feat-moon>`,
+        () => html``
+      )}
+      ${when(
+        this.selectedTab === featureDestinationTabs[1].description,
+        () => html`
+          <feat-mars></feat-mars>`,
+        () => html``
+      )}
+      ${when(
+        this.selectedTab === featureDestinationTabs[2].description,
+        () => html`
+          <feat-europe></feat-europe>`,
+        () => html``
+      )}
+      ${when(
+        this.selectedTab === featureDestinationTabs[3].description,
+        () => html`
+          <feat-titan></feat-titan>`,
+        () => html``
+      )}
     `;
   }
 }
