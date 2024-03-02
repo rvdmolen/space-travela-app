@@ -39,7 +39,7 @@ export class NavigationBar extends LitElement {
               html`
                 <li
                   class="${classMap({
-                active: this.selectedRoute === route.path
+                    active: this.selectedRoute === route.path
                   })}"
                 >
                   <a class="ff-sans-cond uppercase text-white letter-spacing-2" href="${route.path}"

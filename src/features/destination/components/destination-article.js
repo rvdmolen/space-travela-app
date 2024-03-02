@@ -2,8 +2,8 @@ import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../../../styles/styles.js';
 
-@customElement('feat-mars')
-export class FeatMars extends LitElement {
+@customElement('destination-article')
+export class FeatDestinationArticle extends LitElement {
   static get styles() {
     return [
       globalSpaceTravelStyles,
@@ -39,21 +39,26 @@ export class FeatMars extends LitElement {
   render() {
     return html`
       <article class="flow">
-        <h2 class="fs-800 uppercase ff-serif">Mars</h2>
+        <h2 class="fs-800 uppercase ff-serif">
+          <slot name="header"></slot>
+        </h2>
 
         <p>
-          Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of
-          Everest!
+          <slot name="content"></slot>
         </p>
 
         <div class="destination-meta flex">
           <div>
             <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
-            <p class="ff-serif uppercase">225 mil. km</p>
+            <p class="ff-serif uppercase">
+              <slot name="distance"></slot>
+            </p>
           </div>
           <div>
             <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
-            <p class="ff-serif uppercase">9 months</p>
+            <p class="ff-serif uppercase">
+              <slot name="time"></slot>
+            </p>
           </div>
         </div>
       </article>

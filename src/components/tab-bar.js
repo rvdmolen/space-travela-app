@@ -6,18 +6,10 @@ import { TabSelectedEvent } from '../events/tab-selected-event.js';
 
 @customElement('tab-bar')
 export class TabBar extends LitElement {
-  /** @type {Tab[]} */
   @property({ type: Array }) tabs;
-
-  /** @type {string} */
-  @property({ type: Text }) selected = '';
-
-  /** @type {Tab[]} */
   @state() _tabs;
 
-  static get styles() {
-    return [globalSpaceTravelStyles];
-  }
+  static styles = [globalSpaceTravelStyles];
 
   connectedCallback() {
     if (super.connectedCallback) {
@@ -26,10 +18,6 @@ export class TabBar extends LitElement {
     this._tabs = [...this.tabs];
   }
 
-  /**
-   * Select tab
-   * @param {Tab} selectedTab
-   */
   selectTab(selectedTab) {
     this._tabs = this._tabs.map(tab => ({
       ...tab,
@@ -67,19 +55,13 @@ export class TabBar extends LitElement {
   }
 
   _handleMoveRightTab(currentIndex, tabs) {
-    if (currentIndex < tabs.length - 1) {
-      this._setTabVisibility(tabs, currentIndex, currentIndex + 1);
-    } else {
-      this._setTabVisibility(tabs, currentIndex, 0);
-    }
+    const newTabIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+    this._setTabVisibility(tabs, currentIndex, newTabIndex);
   }
 
   _handleMoveLeftTab(currentIndex, tabs) {
-    if (currentIndex > 0) {
-      this._setTabVisibility(tabs, currentIndex, currentIndex - 1);
-    } else {
-      this._setTabVisibility(tabs, currentIndex, tabs.length - 1);
-    }
+    const newTabIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+    this._setTabVisibility(tabs, currentIndex, newTabIndex);
   }
 
   _setTabVisibility(tabs, currentTabIndex, newTabIndex) {
