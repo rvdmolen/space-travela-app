@@ -1,10 +1,9 @@
-import { html, LitElement, css } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { globalSpaceTravelStyles } from '../../../styles/styles.js';
 
-
-@customElement('feat-moon')
-export class FeatMoon extends LitElement {
+@customElement('destination-article')
+export class FeatDestinationArticle extends LitElement {
   static get styles() {
     return [
       globalSpaceTravelStyles,
@@ -33,27 +32,33 @@ export class FeatMoon extends LitElement {
             justify-content: start;
           }
         }
-      `
+      `,
     ];
   }
 
   render() {
     return html`
       <article class="flow">
-        <h2 class="fs-800 uppercase ff-serif">Moon</h2>
+        <h2 class="fs-800 uppercase ff-serif">
+          <slot name="header"></slot>
+        </h2>
 
-        <p>See our planet as you’ve never seen it before. A perfect relaxing trip away to help
-          regain perspective and come back refreshed. While you’re there, take in some history
-          by visiting the Luna 2 and Apollo 11 landing sites.</p>
+        <p>
+          <slot name="content"></slot>
+        </p>
 
         <div class="destination-meta flex">
           <div>
             <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
-            <p class="ff-serif uppercase">384,400 km</p>
+            <p class="ff-serif uppercase">
+              <slot name="distance"></slot>
+            </p>
           </div>
           <div>
             <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
-            <p class="ff-serif uppercase">3 days</p>
+            <p class="ff-serif uppercase">
+              <slot name="time"></slot>
+            </p>
           </div>
         </div>
       </article>

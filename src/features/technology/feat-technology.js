@@ -1,8 +1,8 @@
-import { html, LitElement, css } from 'lit';
+import { css, html, LitElement } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { globalSpaceTravelStyles } from '../../styles/styles.js';
-import './components/index.js'
+import './components/index.js';
 
 const dots = [
   {
@@ -16,12 +16,11 @@ const dots = [
   {
     description: 'Launch vehicle',
     image: new URL('../../../assets/technology/image-launch-vehicle-portrait.jpg', import.meta.url).href
-  }
+  },
 ];
 
 @customElement('feat-technology')
 export class FeatTechnology extends LitElement {
-
   @state() selectedTab = dots[0].description;
 
   @state() selectedFoto = dots[0].image;
@@ -37,10 +36,10 @@ export class FeatTechnology extends LitElement {
         .grid-container--technology {
           --flow-space: 2rem;
           grid-template-areas:
-              'title'
-              'image'
-              'tabs'
-              'content';
+            'title'
+            'image'
+            'tabs'
+            'content';
         }
 
         .grid-container--technology > h1 {
@@ -59,7 +58,7 @@ export class FeatTechnology extends LitElement {
 
         .grid-container--technology > feat-capsule,
         .grid-container--technology > feat-spaceport,
-        .grid-container--technology > feat-vehicle  {
+        .grid-container--technology > feat-vehicle {
           grid-area: content;
         }
 
@@ -67,22 +66,21 @@ export class FeatTechnology extends LitElement {
           .grid-container--technology {
             padding-bottom: 0;
             grid-template-areas:
-                'title'
-                'content'
-                'tabs'
-                'image';
+              'title'
+              'content'
+              'tabs'
+              'image';
           }
         }
 
         @media (min-width: 45em) {
-
           .grid-container--technology {
             grid-template-columns: minmax(1rem, 1fr) minmax(0, 37rem) minmax(0, 23rem) minmax(1rem, 1fr);
             justify-items: start;
             grid-template-areas:
-                '. title title .'
-                '. content image .'
-                '. tabs image .';
+              '. title title .'
+              '. content image .'
+              '. tabs image .';
           }
 
           .grid-container--technology > dot-bar {
@@ -94,15 +92,13 @@ export class FeatTechnology extends LitElement {
             max-width: 90%;
           }
         }
-      `
+      `,
     ];
   }
 
   handleSelectTab(event) {
     this.selectedTab = event.detail;
-    this.selectedFoto = dots
-      .filter(x => x.description === event.detail)
-      .map(x => x.image);
+    this.selectedFoto = dots.filter(x => x.description === event.detail).map(x => x.image);
   }
 
   render() {
@@ -112,15 +108,27 @@ export class FeatTechnology extends LitElement {
 
         <dot-bar .dots="${dots.map(x => x.description)}" .selected="${this.selectedTab}" @dot-selected="${this.handleSelectTab}"></dot-bar>
 
-        ${when(this.selectedTab === dots[0].description, () => html`
-          <feat-capsule></feat-capsule>`, () => html``)}
-        ${when(this.selectedTab === dots[1].description, () => html`
-          <feat-spaceport></feat-spaceport>`, () => html``)}
-        ${when(this.selectedTab === dots[2].description, () => html`
-          <feat-vehicle></feat-vehicle>`, () => html``)}
+        ${when(
+          this.selectedTab === dots[0].description,
+          () => html`
+            <feat-capsule></feat-capsule>`,
+          () => html``
+        )}
+        ${when(
+          this.selectedTab === dots[1].description,
+          () => html`
+            <feat-spaceport></feat-spaceport>`,
+          () => html``
+        )}
+        ${when(
+          this.selectedTab === dots[2].description,
+          () => html`
+            <feat-vehicle></feat-vehicle>`,
+          () => html``
+        )}
 
-        <img src="${this.selectedFoto}" alt="${this.selectedTab}}">
-
-      </div> `;
+        <img src="${this.selectedFoto}" alt="${this.selectedTab}}" />
+      </div>
+    `;
   }
 }

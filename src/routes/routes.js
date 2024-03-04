@@ -6,7 +6,7 @@ const _routes = [
     render: () => html`<feat-home></feat-home>`,
     title: '00 Home',
     enter: async () => {
-       await import('../features/home/feat-home.js');
+      await import('../features/home/feat-home.js');
     },
   },
   {
@@ -37,4 +37,4 @@ const _routes = [
 
 export const SpaceTravelRouter = {
   routes: _routes
-}
+};

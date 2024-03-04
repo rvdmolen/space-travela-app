@@ -16,7 +16,9 @@ export class AppSpaceTraveller extends LitElement {
   _router = new Router(this, routes);
 
   connectedCallback() {
-    super.connectedCallback();
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
   }
 
   static get styles() {
@@ -53,17 +55,12 @@ export class AppSpaceTraveller extends LitElement {
         <a class="skip-to-content" href="#main">Skip to content</a>
         <header class="primary-header flex">
           <div>
-            <img src="${logo}" alt="space tourism logo" class="logo">
+            <img src="${logo}" alt="space tourism logo" class="logo" />
           </div>
-          <navigation-bar
-            .router="${this._router}"
-            .selectedRoute="${this._router._currentPathname}"
-          ></navigation-bar>
+          <navigation-bar .router="${this._router}" .selectedRoute="${this._router._currentPathname}"></navigation-bar>
         </header>
 
-        <main id="main">
-          ${this._router.outlet()}
-        </main>
+        <main id="main">${this._router.outlet()}</main>
       </div>
     `;
   }
